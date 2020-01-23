@@ -12,8 +12,6 @@ import csv
 import re
 import os
 
-import traceback
-
 class TXDallasParser:
 	COLUMN_ORDER = {
 		'judicial_information': JUDICIAL_HEADERS,
@@ -1013,15 +1011,8 @@ class TXDallasParser:
 		return (EXPORT_DATA, last_updated)
 
 	def run(self):
-		# for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
-		for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')][240:]):
-			try:
-				EXPORT_DATA, last_updated = self.parse(html_fn)
-			except:
-				print(f'ERROR: {html_fn}')
-				print(traceback.format_exc())
-				return
-			# EXPORT_DATA, last_updated = self.parse(html_fn)
+		for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
+			EXPORT_DATA, last_updated = self.parse(html_fn)
 			for key in EXPORT_DATA.keys():
 				column_list = TXDallasParser.COLUMN_ORDER[key]
 				data = EXPORT_DATA[key]

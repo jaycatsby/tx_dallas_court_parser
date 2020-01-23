@@ -1,5 +1,7 @@
 TX Dallas County Felony and Misdemeanor Courts Parser
 =====================================================
+![Dallas Screenshot](/images/sample_screenshot.png)
+
 This is a Python package for parsing HTML pages retrieved from the [Texas Dallas
 County Felony and Misdemeanor Courts Case Information](https://www.dallascounty.org/criminalBackgroundSearch/searchByCase). Since
 the county website strictly monitors server activity, this package is meant to be used
