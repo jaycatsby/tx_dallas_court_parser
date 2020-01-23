@@ -44,7 +44,7 @@ DEF_OFF_GOC_CAT_REGEX = re.compile(r'(?<=GOC/CAT )(.+)(?= CODE)')
 DEF_OFF_CODE_REGEX = re.compile(r'(?<=CODE )(.+)$')
 ### JUDICIAL_TRS[4]
 DEF_COMT_REGEX = re.compile(r'(?<=COMT )(.+)(?= SID NUM)')
-DEF_SID_NUM_REGEX = re.compile(r'(?<=SID NUM )(.+)(?= OF AMT)')
+DEF_SID_NUM_REGEX = re.compile(r'(?<=SID NUM )(.+)(?= (OF AMT|NAMELY))')
 DEF_OF_AMT_REGEX = re.compile(r'(?<=OF AMT )(.+)$')
 ### JUDICIAL_TRS[5]
 DEF_COMPLAINANT_REGEX = re.compile(r'(?<=COMPLAINANT )(.+)(?= TAPE #)')
@@ -249,9 +249,9 @@ GC_DATE_REGEX = re.compile(r'(?<=DATE )(.+)$')
 #####                   GENERAL COMMENTS WS DATE                     #####
 ##########################################################################
 ### Line 1
-GC_WS_COMMENT_REGEX = re.compile(r'(?<=B080 )(.+)(?= [0-9]{6})')
-GC_WS_COMMENT_TYPE_REGEX = re.compile(r'(?<= )([A-Z]|[0-9])(?= [0-9]{6})')
-GC_WS_DATE_REGEX = re.compile(r'(?<= [A-Z] )([0-9]{6})(?= [0-9])')
+GC_WS_COMMENT_REGEX = re.compile(r'(?<=B080 )(.+)(?= . [0-9]{6})')
+GC_WS_COMMENT_TYPE_REGEX = re.compile(r'(?<= )(.)(?= [0-9]{6})')
+GC_WS_DATE_REGEX = re.compile(r'(?<= . )([0-9]{6})(?= [0-9])')
 GC_WS_EXTRA_REGEX = re.compile(r'(?<=[0-9]{6} )(.+)$')
 
 ##########################################################################

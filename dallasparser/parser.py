@@ -187,7 +187,10 @@ class TXDallasParser:
 		### JUDICIAL_TRS[4]
 		DEF_COMT = DEF_COMT_REGEX.search(judicial_trs[4]).group().strip()
 		DEF_SID_NUM = DEF_SID_NUM_REGEX.search(judicial_trs[4]).group().strip()
-		DEF_OF_AMT = DEF_OF_AMT_REGEX.search(judicial_trs[4]).group().strip()
+		try:
+			DEF_OF_AMT = DEF_OF_AMT_REGEX.search(judicial_trs[4]).group().strip()
+		except AttributeError:
+			DEF_OF_AMT = ''
 		DATA_DICT['comt'] = clean_val(DEF_COMT)
 		DATA_DICT['sid_number'] = clean_val(DEF_SID_NUM)
 		DATA_DICT['of_amt'] = clean_val(DEF_OF_AMT)
@@ -1010,7 +1013,8 @@ class TXDallasParser:
 		return (EXPORT_DATA, last_updated)
 
 	def run(self):
-		for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
+		# for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
+		for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')][240:]):
 			try:
 				EXPORT_DATA, last_updated = self.parse(html_fn)
 			except:
@@ -1038,88 +1042,3 @@ class TXDallasParser:
 					for row in row_data:
 						sheet.append(row)
 					wb.save(outfile)
-
-	#
-	# def run(self):
-	# 	for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
-	# 	# for html_fn in [fn for fn in os.listdir(self.input_path) if fn.endswith('.html')][:250]:
-	# 		EXPORT_DATA = dict()
-	# 		html_fp = os.path.join(self.input_path, html_fn)
-	# 		html = ''
-	# 		with open(html_fp, 'r') as inp:
-	# 			html = inp.read()
-	# 		soup_res = BeautifulSoup(html.encode('iso-8859-1'), 'lxml')
-	#
-	# 		table = soup_res.find('table', attrs={'class':'table'})
-	# 		trs = [tr for tr in table.find_all('tr') if len(tr.text.strip())>0
-	# 				and FILTER_REGEX.search(tr.text.strip()) is None]
-	#
-	# 		last_updated_raw = table.find_all('td')[-1].text.strip()
-	# 		last_updated = str(parse(last_updated_raw, tzinfos=TZ_INFOS))
-	#
-	# 		case_ids = unicodedata.normalize('NFKD', [tr for tr in table.find_all('tr') if tr.text.strip().startswith('¢')][0].text.strip())
-	# 		try:
-	# 			DA_CASE_ID = DA_CASE_ID_REGEX.search(case_ids).group().strip()
-	# 		except:
-	# 			DA_CASE_ID = ''
-	# 		try:
-	# 			JD_CASE_ID = JD_CASE_ID_REGEX.search(case_ids).group().strip()
-	# 		except:
-	# 			JD_CASE_ID = ''
-	#
-	# 		JUDICIAL_TRS, SETS_TRS, NAMES_TRS, BONDS_TRS, CHARGE_TRS, \
-	# 			DISP_TRS, RED_ENH_TRS, COMMENT_TRS, COMMENT_WS_TRS, \
-	# 			MOTION_TRS, PROB_REVOC_TRS, APPEAL_TRS, COMP_TRS, \
-	# 			PAYMENT_TRS, BOND_COMMENT_TRS = self.extract_tables(trs)
-	#
-	# 		if len(JUDICIAL_TRS)>0:
-	# 			EXPORT_DATA['judicial_information'] = self.get_judicial_information(JUDICIAL_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(SETS_TRS)>0:
-	# 			EXPORT_DATA['sets_and_passes'] = self.get_sets_and_passes(SETS_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(NAMES_TRS)>0:
-	# 			EXPORT_DATA['names'] = self.get_names(NAMES_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(BONDS_TRS)>0:
-	# 			EXPORT_DATA['bonds'] = self.get_bonds(BONDS_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(CHARGE_TRS)>0:
-	# 			EXPORT_DATA['charges'] = self.get_charges(CHARGE_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(DISP_TRS)>0:
-	# 			EXPORT_DATA['dispositions'] = self.get_dispositions(DISP_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(RED_ENH_TRS)>0:
-	# 			EXPORT_DATA['reduced_enhanced_charges'] = self.get_reduced_enhanced(RED_ENH_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(COMMENT_TRS)>0:
-	# 			EXPORT_DATA['general_comments'] = self.get_general_comments(COMMENT_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(COMMENT_WS_TRS)>0:
-	# 			EXPORT_DATA['general_comments_ws_date'] = self.get_general_comments_ws(COMMENT_WS_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(MOTION_TRS)>0:
-	# 			EXPORT_DATA['motions'] = self.get_motions(MOTION_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(PROB_REVOC_TRS)>0:
-	# 			EXPORT_DATA['probation_revocation'] = self.get_probation_revocation(PROB_REVOC_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(APPEAL_TRS)>0:
-	# 			EXPORT_DATA['appeals'] = self.get_appeals(APPEAL_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(COMP_TRS)>0:
-	# 			EXPORT_DATA['competency_data'] = self.get_competency_data(COMP_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(PAYMENT_TRS)>0:
-	# 			EXPORT_DATA['payments'] = self.get_payments(PAYMENT_TRS, DA_CASE_ID, JD_CASE_ID)
-	# 		if len(BOND_COMMENT_TRS)>0:
-	# 			EXPORT_DATA['bond_comments'] = self.get_bond_comments(BOND_COMMENT_TRS, DA_CASE_ID, JD_CASE_ID)
-	#
-	# 		for key in EXPORT_DATA.keys():
-	# 			column_list = TXDallasParser.COLUMN_ORDER[key]
-	# 			data = EXPORT_DATA[key]
-	# 			if type(data)==dict:
-	# 				data = [data]
-	# 			[d.update({'last_updated':last_updated}) for d in data]
-	# 			df = pd.DataFrame(data, columns=column_list)
-	# 			outfile = os.path.join(self.output_path, f'{key}.xlsx')
-	# 			if not os.path.exists(outfile):
-	# 				with pd.ExcelWriter(outfile, engine='openpyxl', mode='w') as writer:
-	# 					df.to_excel(writer, index=False, header=True)
-	# 			else:
-	# 				wb = load_workbook(outfile)
-	# 				sheet = wb.active
-	# 				row_data = list()
-	# 				for d in data:
-	# 					row_data.append([d[k] for k in column_list])
-	# 				for row in row_data:
-	# 					sheet.append(row)
-	# 				wb.save(outfile)
