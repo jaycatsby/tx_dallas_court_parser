@@ -13,16 +13,16 @@ Output
 The `dallasparser` package will generate a maximum of 11 `.xlsx` files for each data
 table found from the county website:
 
-| Table Name                | Output                        |
-|:--------------------------|:------------------------------|
-| Appeals                   | appeals.xlsx                  |
-| Bonds                     | bonds.xlsx                    |
-| Charges                   | charges.xlsx                  |
-| Dispositions              | dispositions.xlsx             |
-| General Comments          | general_comments.xlsx         |
-| General Comments WS Date  | general_comments_ws_date.xlsx |
-| Judicial Information      | judicial_information.xlsx     |
-| Motions                   | motions.xlsx                  |
-| Names                     | names.xlsx                    |
-| Reduced/Enhanced Charges  | reduced_enhanced_charges.xlsx |
-| Sets and Passes           | sets_and_passes.xlsx          |
+| Table Name                | Output                          |
+|:--------------------------|:--------------------------------|
+| Appeals                   | `appeals.xlsx`                  |
+| Bonds                     | `bonds.xlsx`                    |
+| Charges                   | `charges.xlsx`                  |
+| Dispositions              | `dispositions.xlsx`             |
+| General Comments          | `general_comments.xlsx`         |
+| General Comments WS Date  | `general_comments_ws_date.xlsx` |
+| Judicial Information      | `judicial_information.xlsx`     |
+| Motions                   | `motions.xlsx`                  |
+| Names                     | `names.xlsx`                    |
+| Reduced/Enhanced Charges  | `reduced_enhanced_charges.xlsx` |
+| Sets and Passes           | `sets_and_passes.xlsx`          |
