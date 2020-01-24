@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from dallasparser.regex import *
 from dallasparser.utils import *
 
