@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 This module offers general convenience and utility functions for dealing with parsed data.

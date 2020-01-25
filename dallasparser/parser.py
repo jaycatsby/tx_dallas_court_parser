@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from dallasparser.regex import *
 from dallasparser.utils import *
@@ -32,8 +33,6 @@ class TXDallasParser:
 		'bond_comments': BOND_COMMENTS_HEADERS
 	}
 	def __init__(self, input_path=None, output_path=None):
-		if not input_path:
-			raise Exception('HTML directory path is required')
 		self.input_path = input_path
 		self.output_path = output_path
 
@@ -1021,7 +1020,7 @@ class TXDallasParser:
 					data = [data]
 				[d.update({'last_updated':last_updated}) for d in data]
 				df = pd.DataFrame(data, columns=column_list)
-				outfile = os.path.join(self.output_path, f'{key}.xlsx')
+				outfile = os.path.join(self.output_path, '{}.xlsx'.format(key))
 				if not os.path.exists(outfile):
 					with pd.ExcelWriter(outfile, engine='openpyxl', mode='w') as writer:
 						df.to_excel(writer, index=False, header=True)
