@@ -5,7 +5,7 @@ import os
 
 cwd = os.path.abspath(os.path.dirname(__file__))
 
-with open(os.path.join(cwd, 'README.md'), encoding='utf-8') as infile:
+with open(os.path.join(cwd, 'README.md')) as infile:
     long_description = infile.read()
 
 _VERSION = '0.2'
@@ -24,7 +24,7 @@ setup(
     ],
     description='TX Dallas Criminal Case Parser',
     long_description=long_description,
-    long_description_type='text/markdown',
+    long_description_content_type='text/markdown',
     keywords='texas dallas criminal court parser',
     url='https://github.com/jaycatsby/tx_dallas_court_parser',
     author='Jay Choi',
