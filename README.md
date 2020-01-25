@@ -26,3 +26,47 @@ table found from the county website:
 | Names                     | `names.xlsx`                    |
 | Reduced/Enhanced Charges  | `reduced_enhanced_charges.xlsx` |
 | Sets and Passes           | `sets_and_passes.xlsx`          |
+
+Installation
+------------
+**Source**
+```bash
+$ git clone https://github.com/jaycatsby/tx_dallas_court_parser.git
+$ cd tx_dallas_court_parser
+$ python setup.py install
+```
+
+**PyPI**
+```bash
+$ pip install dallasparser
+```
+
+Usage
+-----
+**A. CLI**
+```bash
+$ dallasparser [-h] [-i INPUT] [-o OUTPUT]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INPUT, --input INPUT
+                        absolute path of HTML folder
+  -o OUTPUT, --output OUTPUT
+                        absolute path of XLSX output files
+```
+
+**B. Module**
+```python
+from dallasparser.parser import TXDallasParser
+parser = TXDallasParser(html_path, xlsx_path)
+parser.run()
+```
+
+Contributions
+-------------
+Have an idea to make it better? Go ahead! I will be happy to see a pull request from you! :blush:
+>While creating a PR, please update the *Contributor(s)* section below as well.
+
+Contributor(s)
+--------------
+[Jay C.](https://github.com/jaycatsby)

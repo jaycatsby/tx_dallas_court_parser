@@ -1,7 +1,14 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from setuptools import Command, find_packages, setup
 import os
 
-_VERSION = '0.1'
+cwd = os.path.abspath(os.path.dirname(__file__))
+
+with open(os.path.join(cwd, 'README.md'), encoding='utf-8') as infile:
+    long_description = infile.read()
+
+_VERSION = '0.2'
 
 _CLASSIFIERS = [
     'Programming Language :: Python :: 3',
@@ -16,6 +23,8 @@ setup(
         r for r in open('requirements.txt', 'r').read().split('\n') if r
     ],
     description='TX Dallas Criminal Case Parser',
+    long_description=long_description,
+    long_description_type='text/markdown',
     keywords='texas dallas criminal court parser',
     url='https://github.com/jaycatsby/tx_dallas_court_parser',
     author='Jay Choi',
@@ -23,7 +32,7 @@ setup(
     license='MIT',
     packages=find_packages(include=['dallasparser', 'dallasparser.*']),
     entry_points={
-        'console_scripts': ['dallasparser=dallasparser:cli:main'],
+        'console_scripts': ['dallasparser=dallasparser.cli:main'],
     },
     python_requires='>=3.6',
     classifiers=_CLASSIFIERS,
