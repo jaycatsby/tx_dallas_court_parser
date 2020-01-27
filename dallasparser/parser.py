@@ -24,20 +24,10 @@ class TXDallasParser:
 	"""
 	Main parser class.
 
-	Parameters
-	----------
-	input_path : str, default None
-		Absolute path of HTML folder
-	output_path : str, default `os.getcwd()`
-		Absolute folder path of XLSX output files
-
-	Examples
-	--------
-	Usage as a module:
-
-	>>> from dallasparser import TXDallasParser
-	>>> parser = TXDallasParser(html_path, xlsx_path)
-	>>> parser.run()
+	:param input_path: Absolute path of HTML folder.
+	:type input_path: str
+	:param output_path: Absolute folder path of XLSX output files.
+	:type output_path: str
 	"""
 	COLUMN_ORDER = {
 		'judicial_information': JUDICIAL_HEADERS,
@@ -56,11 +46,23 @@ class TXDallasParser:
 		'payments': PAYMENTS_HEADERS,
 		'bond_comments': BOND_COMMENTS_HEADERS
 	}
+	"""
+	Column order for final exported XLSX files for each table. To modify, see `utils.py`.
+	"""
 	def __init__(self, input_path=None, output_path=None):
 		self.input_path = input_path
 		self.output_path = output_path
 
 	def extract_tables(self, trs):
+		"""
+		Method for separating all of the HTML elements to appropriate list for a given table.
+
+		:param trs: List of <tr> objects excluding table header elements
+		:type trs: list
+
+		:rtype: tuple
+
+		"""
 		IS_JUDICIAL = False
 		IS_BOND = False
 		IS_SETS = False
@@ -149,6 +151,18 @@ class TXDallasParser:
 				PAYMENT_TRS, BOND_COMMENT_TRS)
 
 	def get_judicial_information(self, judicial_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Judicial Information` Table.
+
+		:param judicial_trs: List of <tr> elements in `Judicial Information` section.
+		:type judical_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: dict
+		"""
 		DATA_DICT = dict()
 		DATA_DICT['da_case_id'] = da_case_id
 		DATA_DICT['jd_case_id'] = jd_case_id
@@ -350,6 +364,18 @@ class TXDallasParser:
 		return DATA_DICT
 
 	def get_sets_and_passes(self, sets_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Sets and Passes` Table.
+
+		:param sets_trs: List of <tr> elements in `Sets and Passes` section.
+		:type sets_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		sp_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -386,6 +412,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_names(self, names_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Names` Table.
+
+		:param names_trs: List of <tr> elements in `Names` section.
+		:type names_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		name_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -415,6 +453,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_bonds(self, bonds_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Bonds` Table.
+
+		:param bonds_trs: List of <tr> elements in `Bonds` section.
+		:type bonds_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		bond_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -444,6 +494,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_charges(self, charge_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Charges` Table.
+
+		:param charges_trs: List of <tr> elements in `Charges` section.
+		:type charges_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		DATA_LIST = list()
 		DATA_DICT = dict()
 		charge_id = 0
@@ -494,6 +556,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_dispositions(self, disp_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Dispositions` Table.
+
+		:param disp_trs: List of <tr> elements in `Dispositions` section.
+		:type disp_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		disp_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -594,6 +668,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_reduced_enhanced(self, red_enh_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Reduced/Enhanced Charges` Table.
+
+		:param red_enh_trs: List of <tr> elements in `Reduced/Enhanced Charges` section.
+		:type red_enh_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		red_enh_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -635,6 +721,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_general_comments(self, comment_trs, da_case_id, jd_case_id):
+		"""
+		Extract `General Comments` Table.
+
+		:param comment_trs: List of <tr> elements in `General Comments` section.
+		:type comment_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		comment_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -656,6 +754,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_general_comments_ws(self, comment_ws_trs, da_case_id, jd_case_id):
+		"""
+		Extract `General Comments WS Dates` Table.
+
+		:param comment_ws_trs: List of <tr> elements in `General Comments WS Date` section.
+		:type comment_ws_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		comment_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -679,6 +789,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_motions(self, motion_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Motions` Table.
+
+		:param motions_trs: List of <tr> elements in `Motions` section.
+		:type motions_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		motion_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -718,6 +840,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_probation_revocation(self, prov_revoc_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Probation Revocation` Table.
+
+		:param prob_revoc_trs: List of <tr> elements in `Probation Revocation` section.
+		:type prob_revoc_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		pr_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -819,6 +953,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_appeals(self, appeal_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Appeals` Table.
+
+		:param appeals_trs: List of <tr> elements in `Appeals` section.
+		:type appeals_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		appeal_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -878,6 +1024,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_competency_data(self, comp_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Competency Data` Table.
+
+		:param comp_trs: List of <tr> elements in `Competency Data` section.
+		:type comp_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		comp_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -908,6 +1066,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_payments(self, payment_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Payments` Table.
+
+		:param payment_trs: List of <tr> elements in `Payments` section.
+		:type payment_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		payment_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -948,6 +1118,18 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def get_bond_comments(self, bond_comment_trs, da_case_id, jd_case_id):
+		"""
+		Extract `Bond Comments` Table.
+
+		:param bond_comment_trs: List of <tr> elements in `Bond Comments` section.
+		:type bond_comment_trs: list
+		:param da_case_id: DA Case ID used for linkage.
+		:type da_case_id: str
+		:param jd_case_id: Judicial Case ID used for linkage.
+		:type jd_case_id: str
+
+		:rtype: list
+		"""
 		comment_id = 0
 		DATA_LIST = list()
 		DATA_DICT = dict()
@@ -972,6 +1154,16 @@ class TXDallasParser:
 		return DATA_LIST
 
 	def parse(self, html_fn):
+		"""
+		Main method to run the parser. This method takes in an HTML file name and
+		loads it as a `BeautifulSoup` object. Afterwards, it calls `extract_tables`
+		method to find all of the relevant HTML elements before checking for each table.
+
+		:param html_fn: Filename of the HTML page to parse.
+		:type html_fn: str
+
+		:rtype: tuple
+		"""
 		EXPORT_DATA = dict()
 		html_fp = os.path.join(self.input_path, html_fn)
 		html = ''
@@ -1035,6 +1227,10 @@ class TXDallasParser:
 		return (EXPORT_DATA, last_updated)
 
 	def run(self):
+		"""
+		Main method to call for parsing HTML files. Iterates `self.input_path` to find
+		all HTML files and for each file found, calls the `parse` method.
+		"""
 		for html_fn in tqdm([fn for fn in os.listdir(self.input_path) if fn.endswith('.html')]):
 			EXPORT_DATA, last_updated = self.parse(html_fn)
 			for key in EXPORT_DATA.keys():

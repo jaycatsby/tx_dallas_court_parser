@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+Utils
+-----
 This module offers general convenience and utility functions for dealing with parsed data.
 """
 from __future__ import unicode_literals
@@ -10,6 +12,7 @@ TZ_INFOS = {
 	'CDT': 'UTC-5',
 }
 
+#: Column order of `judicial_information.xlsx`
 JUDICIAL_HEADERS = [
 	'da_case_id', 'jd_case_id',
 	'name_raw',
@@ -35,6 +38,7 @@ JUDICIAL_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `sets_and_passes.xlsx`
 SETS_HEADERS = [
 	'da_case_id', 'jd_case_id',
 	'sp_id', 'set_for_date', 'set_for_time', 'set_type', 'passed_to_date',
@@ -43,6 +47,7 @@ SETS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `names.xlsx`
 NAMES_HEADERS = [
 	'da_case_id', 'jd_case_id',
 	'name_id', 'associated_name', 'name_ref_code',
@@ -50,6 +55,7 @@ NAMES_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `bonds.xlsx`
 BONDS_HEADERS = [
 	'da_case_id', 'jd_case_id',
 	'bond_id', 'date_bond_set',
@@ -58,6 +64,7 @@ BONDS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `charges.xlsx`
 CHARGES_HEADERS = [
 	'da_case_id', 'jd_case_id',
 	'charge_id', 'name_raw', 'offense_cd', 'state_cd',
@@ -66,6 +73,7 @@ CHARGES_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `dispositions.xlsx`
 DISPOSITIONS_HEADERS = [
 	'da_case_id', 'jd_case_id', 'disp_id', 'ct_disp_no',
 	'verdict_date', 'verdict_by', 'verdict_jg', 'verdict_tc',
@@ -84,6 +92,7 @@ DISPOSITIONS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `reduced_enhanced_charges.xlsx`
 RED_ENH_HEADERS = [
 	'da_case_id', 'jd_case_id', 'red_enh_id',
 	'desc', 'comt', 'typ', 'cl',
@@ -93,18 +102,21 @@ RED_ENH_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `general_comments.xlsx`
 GC_HEADERS = [
 	'da_case_id', 'jd_case_id', 'comment_id',
 	'comment', 'date',
 	'last_updated'
 ]
 
+#: Column order of `general_comments_ws_date.xlsx`
 GC_WS_DATE_HEADERS = [
 	'da_case_id', 'jd_case_id', 'comment_id',
 	'comment', 'comment_type', 'comment_date', 'extra_field',
 	'last_updated'
 ]
 
+#: Column order of `motions.xlsx`
 MOTIONS_HEADERS = [
 	'da_case_id', 'jd_case_id', 'motion_id',
 	'motion_filed', 'motion_type', 'motion_pending', 'statement_of_facts_filed',
@@ -113,6 +125,7 @@ MOTIONS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `probation_revocation.xlsx`
 PROB_REVOC_HEADERS = [
 	'da_case_id', 'jd_case_id', 'ct_disp_no',
 	'verdict_date', 'verdict_by', 'verdict_jg', 'verdict_tc',
@@ -130,6 +143,7 @@ PROB_REVOC_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `appeals.xlsx`
 APPEALS_HEADERS = [
 	'da_case_id', 'jd_case_id', 'appeal_id', 'ct_disp_no',
 	'date_appeal_made', 'copy_statement_of_facts_filed', 'extended',
@@ -141,6 +155,7 @@ APPEALS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `competency_data.xlsx`
 COMPETENCY_HEADERS = [
 	'da_case_id', 'jd_case_id', 'competency_id',
 	'hearing_date', 'purpose', 'result', 'finding_by',
@@ -148,6 +163,7 @@ COMPETENCY_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `payments.xlsx`
 PAYMENTS_HEADERS = [
 	'da_case_id', 'jd_case_id', 'payment_id', 'ct_disp_no',
 	'date_paid', 'amt_paid', 'type_payment', 'receipt_no',
@@ -156,6 +172,7 @@ PAYMENTS_HEADERS = [
 	'last_updated'
 ]
 
+#: Column order of `bond_comments.xlsx`
 BOND_COMMENTS_HEADERS = [
 	'da_case_id', 'jd_case_id', 'comment_id', 'date',
 	'comment', 'func',
@@ -167,8 +184,8 @@ def clean_val(val):
 	Returns cleaned value after replacing underscores (`'_'`) and asterisks (`'*'`) with
 	an empty whitespace.
 
-	:param val:
-		Raw parsed string
+	:param val:	Raw parsed string
+	:type val: str
 
 	:return:
 		A :py:class:`str` object after removing underscores and asterisks

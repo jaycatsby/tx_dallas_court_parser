@@ -11,6 +11,9 @@ import sys
 import os
 
 def parse_arg():
+    """
+    Argument parser for CLI usage.
+    """
     parser = argparse.ArgumentParser(
         description=(
             'Parse court recoreds from TX Dallas County Felony and Misdemeanor Courts'
