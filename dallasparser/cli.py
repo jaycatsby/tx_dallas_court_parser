@@ -24,7 +24,8 @@ def parse_arg():
         '-i',
         '--input',
         help='absolute path of HTML folder',
-        type=str
+        type=str,
+        required=True
     )
     parser.add_argument(
         '-o',
