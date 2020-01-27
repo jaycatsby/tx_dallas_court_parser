@@ -8,7 +8,7 @@ cwd = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(cwd, 'README.md')) as infile:
     long_description = infile.read()
 
-_VERSION = '0.2'
+_VERSION = '0.3'
 
 _CLASSIFIERS = [
     'Programming Language :: Python :: 3',

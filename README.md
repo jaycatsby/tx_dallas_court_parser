@@ -73,4 +73,4 @@ Have an idea to make it better? Go ahead! I will be happy to see a pull request 
 
 Contributor(s)
 --------------
-[Jay C.](https://github.com/jaycatsby)
+[Jay C.](https://github.com/jaycatsby) @ [Squalo Dev LLC](https://squalodev.com/)
