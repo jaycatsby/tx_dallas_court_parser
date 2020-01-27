@@ -33,6 +33,9 @@ def parse_arg():
     return parser.parse_args()
 
 def main():
+    """
+    Main function to run when parsing using CLI.
+    """
     args = parse_arg()
     input = args.input
     output = args.output

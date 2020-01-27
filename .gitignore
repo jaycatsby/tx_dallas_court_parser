@@ -133,6 +133,8 @@ bin/
 include/
 lib/
 Scripts/
+tcl/
+pip-selfcheck.json
 
 # Data
 html/
