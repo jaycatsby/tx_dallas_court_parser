@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+CLI
+---
+Command-line script for running TXDallasParser.
+"""
 from dallasparser.parser import TXDallasParser
 import argparse
 import sys

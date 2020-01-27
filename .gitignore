@@ -132,6 +132,7 @@ dmypy.json
 bin/
 include/
 lib/
+Scripts/
 
 # Data
 html/

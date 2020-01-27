@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Parser
+------
+Parser for extracting relevant information from Texas Dallas
+County Felony and Misdemeanor Courts using regular expressions.
+"""
 from dallasparser.regex import *
 from dallasparser.utils import *
 
@@ -15,6 +21,24 @@ import re
 import os
 
 class TXDallasParser:
+	"""
+	Main parser class.
+
+	Parameters
+	----------
+	input_path : str, default None
+		Absolute path of HTML folder
+	output_path : str, default `os.getcwd()`
+		Absolute folder path of XLSX output files
+
+	Examples
+	--------
+	Usage as a module:
+
+	>>> from dallasparser import TXDallasParser
+	>>> parser = TXDallasParser(html_path, xlsx_path)
+	>>> parser.run()
+	"""
 	COLUMN_ORDER = {
 		'judicial_information': JUDICIAL_HEADERS,
 		'sets_and_passes': SETS_HEADERS,
