@@ -58,7 +58,6 @@ todo_include_todos = True
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -71,3 +70,38 @@ html_theme = 'sphinx_rtd_theme'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
+
+# Output file base name for HTML help builder
+htmlhelp_basename = 'TXDallasParserDoc'
+
+# -- Options for LaTeX output ---------------------------------------------
+latex_elements = {
+    'papersize':'a4paper',
+    'pointsize':'10pt',
+    'extraclassoptions':'openany,onesisde',
+    'tableofcontents':'',
+    'printindex':'\\footnotesize\\raggedright\\printindex',
+}
+latex_documents = [
+    (master_doc, 'txdallasparser.tex', 'TX Dallas Parser Documentation',
+        author, 'manual')
+]
+
+# -- Options for Texinfo output -------------------------------------------
+# Grouping the document tree into Texinfo files. List of tuples
+# (source start file, target name, title, author,
+# dir menu entry, description, category)
+texinfo_documents = [
+    (master_doc, 'TXDallasParser', 'TX Dallas Parser Documentation',
+    author, 'TXDallasParser', 'One line description of project.',
+    'Miscellaneous'),
+]
+
+# -- Options for Epub output ----------------------------------------------
+# Bibliographic Dublic Core info.
+epub_title = project
+epub_author = author
+epub_publisher = author
+epub_copyright = copyright
+
+epub_exclude_files = ['search.html']
